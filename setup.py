@@ -5,7 +5,9 @@ from setuptools import setup
 PROJECT_ROOT = abspath(dirname(__file__))
 
 with open(join(PROJECT_ROOT, 'flake8_strict.py')) as f:
-    __version__ = [line for line in f if line.startswith('__version__')][0]
+    version_line = [line for line in f if line.startswith('__version__')][0]
+
+__version__ = version_line.split('=')[1].strip().strip("'").strip('"')
 
 readme_path = join(PROJECT_ROOT, 'README.rst')
 with open(readme_path) as f:
