@@ -46,8 +46,8 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
-Not released yet
-''''''''''''''''
+0.1.1
+'''''
 
 * Fixed few ``AttributeError: 'Node' object has no attribute 'lineno'`` errors
 
