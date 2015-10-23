@@ -43,6 +43,15 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 * MINOR is updated when a new, backwards compatible, features are introduced
 * PATCH is updated when a backwards compatible bug fixes are applied
 
+Changes
+-------
+
+
+0.1.0
+'''''
+
+First release
+
 
 License
 -------
