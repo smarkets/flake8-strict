@@ -54,3 +54,9 @@ f3(
 
 kwargs = {}
 
+f5('-o',  # S100
+   some_keyword_argument='./')  # S101
+
+f5(
+    b='something',
+)

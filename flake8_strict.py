@@ -81,7 +81,7 @@ def _process_parameters(parameters):
         return
 
     first_element = elements[0]
-    if open_parenthesis.lineno == first_element.lineno:
+    if open_parenthesis.lineno == first_element.get_lineno():
         yield _error(first_element, ErrorCode.S100)
 
     last_element = elements[-1]
@@ -99,7 +99,15 @@ def _process_parameters(parameters):
 
 
 def _error(element, error_code):
-    return (element.lineno, element.column, error_code)
+    return (element.get_lineno(), _get_column(element), error_code)
+
+
+def _get_column(node):
+    while not isinstance(node, pytree.Leaf):
+        if not node.children:
+            return
+        node = node.children[0]
+    return node.column
 
 
 if __name__ == '__main__':
