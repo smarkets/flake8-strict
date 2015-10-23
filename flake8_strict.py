@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+from __future__ import absolute_import, division, print_function, unicode_literals
+
 import enum
 import itertools
 import sys
@@ -32,9 +36,7 @@ class Flake8Checker(object):
         self._filename = filename
 
     def run(self):
-        with open(self._filename, 'rt') as f:
-            code = f.read()
-        errors = _process_code(code)
+        errors = _process_file(self._filename)
         for line, column, error_code in errors:
             yield (line, column, '%s %s' % (error_code.name, error_code.value), type(self))
 
@@ -43,6 +45,12 @@ _driver = Driver(
     grammar=python_grammar_no_print_statement,
     convert=pytree.convert,
 )
+
+
+def _process_file(filename):
+    with open(filename, 'rt') as f:
+        code = f.read()
+    return _process_code(code)
 
 
 def _process_code(code):
@@ -92,3 +100,24 @@ def _process_parameters(parameters):
 
 def _error(element, error_code):
     return (element.lineno, element.column, error_code)
+
+
+if __name__ == '__main__':
+    exit_code = 0
+    for filename in sys.argv[1:]:
+        errors = list(_process_file(filename))
+        if errors:
+            exit_code = 1
+
+        for line, column, error in errors:
+            print(
+                '%s:%s:%s %s %s' % (
+                    filename,
+                    line,
+                    column,
+                    error.name,
+                    error.value,
+                ),
+            )
+
+    sys.exit(exit_code)
