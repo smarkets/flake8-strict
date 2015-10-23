@@ -1,5 +1,14 @@
 import enum
 import itertools
+import sys
+
+# A conscious decision has been made to use an (to the best of my knowledge)
+# undocumented and somewhat private lib2to3 package here.
+#
+# I trust the automated test suite to catch trivial issues if any backwards
+# incompatible changes are made to lib2to3 that affect us so we can fix them.
+#
+# Jakub
 
 from lib2to3 import pytree
 from lib2to3.pgen2.driver import Driver
