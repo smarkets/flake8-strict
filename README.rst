@@ -32,6 +32,10 @@ Limitations
   * all valid Python 3 code
   * Python 2 code with ``print_function`` enabled
 
+* the existing checks are quite basic, they'll be improved and new
+  ones will added
+* line/column numbers are off currently
+
 
 Versioning and backwards compatibility
 --------------------------------------
