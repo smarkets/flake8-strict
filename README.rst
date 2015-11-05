@@ -10,6 +10,7 @@ Flake8 plugin that checks Python code against a set of opinionated style rules.
 Compatible with Python 2.7, 3.3+, PyPy 2.6+ and PyPy 2.4+.
 
 PyPI page: https://pypi.python.org/pypi/flake8_strict
+
 GitHub page: https://github.com/smarkets/flake8-strict
 
 To install using PyPI and pip::
