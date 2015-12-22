@@ -60,3 +60,7 @@ f5('-o',  # S100
 f5(
     b='something',
 )
+
+(
+    ''.
+    format())

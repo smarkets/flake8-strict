@@ -61,8 +61,10 @@ def _process_code(code):
 def _process_tree(tree):
     iterables = []
     nice_type = pytree.type_repr(tree.type)
-    if nice_type in ('parameters', 'trailer'):
+    if nice_type  == 'parameters':
         iterables.append(_process_parameters(tree))
+    elif nice_type == 'trailer':
+        iterables.append(_process_trailer(tree))
 
     iterables.extend(_process_tree(c) for c in tree.children)
 
@@ -70,11 +72,11 @@ def _process_tree(tree):
 
 
 def _process_parameters(parameters):
-    multi_line = len(set(t.get_lineno() for t in parameters.children)) > 1
-    if not multi_line:
+    if not _is_multi_line(parameters):
         return
 
     open_parenthesis, args_list, close_parenthesis = parameters.children
+
     elements = args_list.children
     if not elements:
         # TODO complain about multi-line argument list with nothing in it
@@ -96,6 +98,20 @@ def _process_parameters(parameters):
         )
     ):
         yield _error(last_element, ErrorCode.S101)
+
+
+def _is_multi_line(tree):
+    return len(set(t.get_lineno() for t in tree.children)) > 1
+
+
+def _process_trailer(trailer):
+    # The definition of trailer node:
+    # trailer: '(' [arglist] ')' | '[' subscriptlist ']' | '.' NAME
+    children = trailer.children
+    if len(children) == 3:
+        return _process_parameters(trailer)
+    else:
+        return []
 
 
 def _error(element, error_code):
