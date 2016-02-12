@@ -19,7 +19,7 @@ from lib2to3.pgen2.driver import Driver
 from lib2to3.pgen2 import token
 from lib2to3.pygram import python_grammar_no_print_statement
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 
 @enum.unique
@@ -88,15 +88,19 @@ def _process_parameters(parameters):
 
     last_element = elements[-1]
 
-    # We only accept lack of trailing comma in case of parameter list ending
-    # with *args or **kwargs because trailing comma there is a syntax error
-    if (
-        last_element.type != token.COMMA and
-        (
-            len(elements) < 2 or
-            elements[-2].type not in (token.STAR, token.DOUBLESTAR)
-        )
-    ):
+    # We only accept lack of trailing comma in case of the parameter
+    # list containing any use of the iterable unpacking operators (*,
+    # **) as adding the trailing comma is a syntax error.
+    # Note however that this is not a syntax error following Python
+    # 3.5 as specified in PEP 448.
+    no_unpacking = all(
+        [
+            element.type not in (token.STAR, token.DOUBLESTAR)
+            for element in elements
+        ]
+    )
+    parent_nice_type = pytree.type_repr(parameters.parent.type)
+    if last_element.type != token.COMMA and no_unpacking:
         yield _error(last_element, ErrorCode.S101)
 
 

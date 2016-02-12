@@ -51,6 +51,12 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
+0.1.2
+'''''
+
+* Fixed compatibility with PEP 3102, now doesn't raise S101 in this
+  case as it would be a syntax error.
+
 0.1.1
 '''''
 
