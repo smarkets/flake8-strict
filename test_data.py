@@ -34,6 +34,12 @@ def f5(
 ):
     pass
 
+def f6(
+    *,
+    d
+):
+    pass
+
 
 f3(1,  # S100
    2)  # S101
