@@ -89,18 +89,16 @@ def _process_parameters(parameters):
     last_element = elements[-1]
 
     # We only accept lack of trailing comma in case of the parameter
-    # list containing any use of the iterable unpacking operators (*,
-    # **) as adding the trailing comma is a syntax error.
-    # Note however that this is not a syntax error following Python
-    # 3.5 as specified in PEP 448.
-    no_unpacking = all(
+    # list containing any use of * or ** as adding the trailing comma
+    # is a syntax error.
+    no_variadic_arguments = all(
         [
             element.type not in (token.STAR, token.DOUBLESTAR)
             for element in elements
         ]
     )
     parent_nice_type = pytree.type_repr(parameters.parent.type)
-    if last_element.type != token.COMMA and no_unpacking:
+    if last_element.type != token.COMMA and no_variadic_arguments:
         yield _error(last_element, ErrorCode.S101)
 
 

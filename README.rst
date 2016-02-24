@@ -54,7 +54,8 @@ Changes
 0.1.2
 '''''
 
-* Fixed compatibility with PEP 3102, now doesn't raise S101 in this
+* Fixed handling argument lists with keyword-only arguments
+  (compatibility with PEP 3102), this now doesn't raise S101 in this
   case as it would be a syntax error.
 
 0.1.1
