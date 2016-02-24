@@ -54,6 +54,7 @@ Changes
 0.1.2
 '''''
 
+* Fixed a "ValueError: need more than 2 values to unpack" error (GitHub issue #1).
 * Fixed handling argument lists with keyword-only arguments
   (compatibility with PEP 3102), this now doesn't raise S101 in this
   case as it would be a syntax error.
