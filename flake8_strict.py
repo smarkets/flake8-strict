@@ -5,6 +5,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import enum
 import itertools
 import sys
+import pep8
 
 # A conscious decision has been made to use an (to the best of my knowledge)
 # undocumented and somewhat private lib2to3 package here.
@@ -48,8 +49,11 @@ _driver = Driver(
 
 
 def _process_file(filename):
-    with open(filename, 'rt') as f:
-        code = f.read()
+    if filename == 'stdin':
+        code = pep8.stdin_get_value()
+    else:
+        with open(filename, 'rt') as f:
+            code = f.read()
     return _process_code(code)
 
 
