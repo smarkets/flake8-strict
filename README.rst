@@ -51,6 +51,11 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
+0.1.3 (not released yet)
+''''''''''''''''''''''''
+
+* Fixed reading from stdin
+
 0.1.2
 '''''
 
