@@ -5,7 +5,11 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import enum
 import itertools
 import sys
-import pep8
+
+try:
+    import pycodestyle
+except ImportError:
+    import pep8 as pycodestyle
 
 # A conscious decision has been made to use an (to the best of my knowledge)
 # undocumented and somewhat private lib2to3 package here.
@@ -50,7 +54,7 @@ _driver = Driver(
 
 def _process_file(filename):
     if filename == 'stdin':
-        code = pep8.stdin_get_value()
+        code = pycodestyle.stdin_get_value()
     else:
         with open(filename, 'rt') as f:
             code = f.read()
