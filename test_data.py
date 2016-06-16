@@ -58,6 +58,54 @@ f3(
     2,
 )
 
+a = ['x',  # S100
+     'y']  # S101
+
+a = [
+    'x',
+    'y',
+]
+
+a = [x  # S100
+     for x in range(1)]
+
+a = [
+    x
+    for x in range(1)
+]
+
+a = {'x',  # S100
+     'y'}  # S101
+
+a = {
+    'x',
+    'y',
+}
+
+a = {x  # S100
+     for x in range(1)}
+
+a = {
+    x
+    for x in range(1)
+}
+
+a = {'x': 1,  # S100
+     'y': 2}  # S101
+
+a = {
+    'x': 1,
+    'y': 2,
+}
+
+a = {x: x  # S100
+     for x in range(1)}
+
+a = {
+    x: x
+    for x in range(1)
+}
+
 kwargs = {}
 
 f5('-o',  # S100
