@@ -121,7 +121,11 @@ def _process_trailer(trailer):
     # trailer: '(' [arglist] ')' | '[' subscriptlist ']' | '.' NAME
     children = trailer.children
     if len(children) == 3:
-        return _process_parameters(trailer)
+        middle = children[1]
+        if pytree.type_repr(middle.type) == 'atom':
+            return _process_atom(middle)
+        else:
+            return _process_parameters(trailer)
     else:
         return []
 

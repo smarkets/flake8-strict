@@ -106,6 +106,38 @@ a = {
     for x in range(1)
 }
 
+
+f3([
+    '11',
+    '22',
+])
+
+f3({
+    '11',
+    '22',
+})
+
+f3({
+    '11': 11,
+    '22': 22,
+})
+
+f3([
+    x
+    for x in range(1)
+])
+
+f3({
+    x
+    for x in range(1)
+})
+
+f3({
+    x: x
+    for x in range(1)
+})
+
+
 kwargs = {}
 
 f5('-o',  # S100
