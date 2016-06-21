@@ -58,6 +58,7 @@ Changes
 * Fixed not being able to run when pycodestyle, not pep8, is installed (pep8
   has been renamed to pycodestyle and flake8 2.6.0+ doesn't trigger pep8
   installation anymore)
+* Added support for set, list and dict literals and comprehensions
 
 0.1.2
 '''''

@@ -73,6 +73,8 @@ def _process_tree(tree):
         iterables.append(_process_parameters(tree))
     elif nice_type == 'trailer':
         iterables.append(_process_trailer(tree))
+    elif nice_type == 'atom':
+        iterables.append(_process_atom(tree))
 
     iterables.extend(_process_tree(c) for c in tree.children)
 
@@ -122,6 +124,32 @@ def _process_trailer(trailer):
         return _process_parameters(trailer)
     else:
         return []
+
+def _process_atom(atom):
+    # The definition of atom node:
+    # atom: ('(' [yield_expr|testlist_gexp] ')' |
+    #        '[' [listmaker] ']' |
+    #        '{' [dictsetmaker] '}' |
+    #        '`' testlist1 '`' |
+    #        NAME | NUMBER | STRING+ | '.' '.' '.')
+    if len(atom.children) < 3 or not _is_multi_line(atom):
+        return
+
+    left = atom.children[0]
+    if left.value not in {'{', '['}:
+        return
+    open_parenthesis, maker, close_parenthesis = atom.children
+    if open_parenthesis.lineno == maker.get_lineno():
+        yield _error(maker, ErrorCode.S100)
+
+    last_maker_element = maker.children[-1]
+    # Enforcing trailing commas in list/dict/set comprehensions seems too strict
+    # so we won't do it for now even if it is syntactically allowed.
+    has_comprehension_inside = 'comp_for' in {
+        pytree.type_repr(node.type) for node in maker.children
+    }
+    if last_maker_element.type != token.COMMA and not has_comprehension_inside:
+        yield _error(last_maker_element, ErrorCode.S101)
 
 
 def _error(element, error_code):
