@@ -59,6 +59,7 @@ Changes
   has been renamed to pycodestyle and flake8 2.6.0+ doesn't trigger pep8
   installation anymore)
 * Added support for set, list and dict literals and comprehensions
+* Function calls with single, multi-line arguments are now treated more reasonably
 
 0.1.2
 '''''
