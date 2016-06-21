@@ -51,8 +51,8 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
-0.1.3 (not released yet)
-''''''''''''''''''''''''
+0.1.3
+'''''
 
 * Fixed reading from stdin
 * Fixed not being able to run when pycodestyle, not pep8, is installed (pep8
