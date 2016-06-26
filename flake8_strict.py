@@ -69,7 +69,7 @@ def _process_code(code):
 def _process_tree(tree):
     iterables = []
     nice_type = pytree.type_repr(tree.type)
-    if nice_type  == 'parameters':
+    if nice_type == 'parameters':
         iterables.append(_process_parameters(tree))
     elif nice_type == 'trailer':
         iterables.append(_process_trailer(tree))
@@ -107,7 +107,7 @@ def _process_parameters(parameters):
             for element in elements
         ]
     )
-    parent_nice_type = pytree.type_repr(parameters.parent.type)
+
     if last_element.type != token.COMMA and no_variadic_arguments:
         yield _error(last_element, ErrorCode.S101)
 
@@ -128,6 +128,7 @@ def _process_trailer(trailer):
             return _process_parameters(trailer)
     else:
         return []
+
 
 def _process_atom(atom):
     # The definition of atom node:
