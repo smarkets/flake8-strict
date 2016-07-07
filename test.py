@@ -18,10 +18,10 @@ def test_processing():
             for error_code in match.group(1).split():
                 expected_errors.add((lineno + 1, error_code))
 
-    actual_errors = set(
+    actual_errors = {
         (line, error_code.name)
-        for line, column, error_code in _process_code(code),
-    )
+        for line, column, error_code in _process_code(code)
+    }
 
     not_caught = expected_errors - actual_errors
     false_negatives = actual_errors - expected_errors
