@@ -36,6 +36,32 @@ Limitations
 * the existing checks are quite basic, they'll be improved and new
   ones will added
 * line/column numbers are off currently
+* code like this will cause a parsing error (lib2to3.pgen2.parse.ParseError:
+  bad input)::
+
+      some_name(
+          x for x in range(1),
+      )
+
+  It's ironic but the trailing comma is the issue here, without it parsing
+  works ok::
+
+      some_name(
+          x for x in range(1)
+      )
+
+  This is a limitation of the underlying parser library and is unlikely to
+  be fixed in near future. Suggested workaround: wrap the generator in
+  parentheses, like this::
+
+      some_name(
+          (x for x in range(1)),
+      )
+
+  If the function being called is dict or set the function calls can be
+  replaced with dict and set comprehensions therefore avoiding the issue
+  completely.
+
 
 
 Versioning and backwards compatibility
