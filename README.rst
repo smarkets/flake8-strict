@@ -77,6 +77,11 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
+0.1.4
+'''''
+
+* Fixed handling of one-element lists (https://github.com/smarkets/flake8-strict/issues/15)
+
 0.1.3
 '''''
 

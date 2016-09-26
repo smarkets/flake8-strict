@@ -24,7 +24,7 @@ from lib2to3.pgen2.driver import Driver
 from lib2to3.pgen2 import token
 from lib2to3.pygram import python_grammar_no_print_statement
 
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 
 
 @enum.unique
@@ -147,7 +147,12 @@ def _process_atom(atom):
     if open_parenthesis.lineno == maker.get_lineno():
         yield _error(maker, ErrorCode.S100)
 
-    last_maker_element = maker.children[-1]
+    if maker.children:
+        last_maker_element = maker.children[-1]
+    else:
+        # If we're dealing with a one element list we'll land here
+        last_maker_element = maker
+
     # Enforcing trailing commas in list/dict/set comprehensions seems too strict
     # so we won't do it for now even if it is syntactically allowed.
     has_comprehension_inside = 'comp_for' in {
