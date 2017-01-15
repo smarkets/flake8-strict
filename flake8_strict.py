@@ -62,7 +62,9 @@ def _process_file(filename):
 
 
 def _process_code(code):
-    tree = _driver.parse_string(code)
+    tree = _driver.parse_string(
+        '%s%s' % (code, '\n' if code and code[-1] != '\n' else ''),
+    )
     return _process_tree(tree)
 
 

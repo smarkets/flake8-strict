@@ -9,7 +9,7 @@ def test_processing():
     with open('test_data.py', 'rt') as f:
         code = f.read()
 
-    code = code.strip() + '\n'
+    code = code.strip()
 
     expected_errors = set()
     for lineno, line in enumerate(code.splitlines()):
