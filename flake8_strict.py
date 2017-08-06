@@ -108,10 +108,17 @@ def _process_parameters(parameters):
             element.type not in (token.STAR, token.DOUBLESTAR)
             for element in elements
         ]
-    )
+    ) and not _is_unpacking_element(last_element)
 
     if last_element.type != token.COMMA and no_variadic_arguments:
         yield _error(last_element, ErrorCode.S101)
+
+
+def _is_unpacking_element(element):
+    element_type = pytree.type_repr(element.type)
+    if element_type == 'argument':
+        return element.children[0].type in [token.STAR, token.DOUBLESTAR]
+    return element_type == 'star_expr'
 
 
 def _is_multi_line(tree):

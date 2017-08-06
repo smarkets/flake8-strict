@@ -82,6 +82,7 @@ Changes
 
 * Fixed UnicodeDecodeError if file contains non-ascii symbols (issue #22)
 * Fixed error if newline is omitted from end of file (issue #18)
+* Fixed erroneous comma suggested when unpacking function parameter (issue #21)
 
 0.1.4
 '''''
