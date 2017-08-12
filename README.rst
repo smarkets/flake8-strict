@@ -77,8 +77,8 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
-0.1.5 (not released yet)
-''''''''''''''''''''''''
+0.1.5
+'''''
 
 * Fixed UnicodeDecodeError if file contains non-ascii symbols (issue #22)
 * Fixed error if newline is omitted from end of file (issue #18)
