@@ -77,6 +77,8 @@ def _process_tree(tree):
         iterables.append(_process_trailer(tree))
     elif nice_type == 'atom':
         iterables.append(_process_atom(tree))
+    elif nice_type == 'decorator':
+        iterables.append(_process_decorator(tree))
 
     iterables.extend(_process_tree(c) for c in tree.children)
 
@@ -169,6 +171,13 @@ def _process_atom(atom):
     }
     if last_maker_element.type != token.COMMA and not has_comprehension_inside:
         yield _error(last_maker_element, ErrorCode.S101)
+
+
+def _process_decorator(decorator):
+    # The definition of decorator node:
+    # decorator: '@' dotted_name [ '(' [arglist] ')' ] NEWLINE
+    decorator.children = decorator.children[2:5]
+    return _process_trailer(decorator)
 
 
 def _error(element, error_code):

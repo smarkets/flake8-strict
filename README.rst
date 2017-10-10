@@ -77,6 +77,12 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
+0.1.6 (not released yet)
+''''''''''''''''''''''''
+
+* Fixed decorator arguments not being linted.
+
+
 0.1.5
 '''''
 
