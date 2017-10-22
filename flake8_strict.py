@@ -81,6 +81,8 @@ def _process_tree(tree):
         iterables.append(_process_decorator(tree))
     elif nice_type == 'import_from':
         iterables.append(_process_import_from(tree))
+    elif nice_type == 'classdef':
+        iterables.append(_process_classdef(tree))
 
     iterables.extend(_process_tree(c) for c in tree.children)
 
@@ -192,6 +194,13 @@ def _process_import_from(import_from):
         import_from.children = import_from.children[-3:]
         return _process_parameters(import_from)
     return []
+
+
+def _process_classdef(classdef):
+    # The definition of classdef node:
+    # classdef: 'class' NAME ['(' [arglist] ')'] ':' suite
+    classdef.children = classdef.children[2:5]
+    return _process_trailer(classdef)
 
 
 def _error(element, error_code):

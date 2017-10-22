@@ -183,3 +183,24 @@ from typing import (
 from typing import (Any,  # S100
     Optional  # S101
 )
+
+
+class C1:
+    pass
+
+
+class C2:
+    pass
+
+
+class C3(
+    C1,
+    C2,
+):
+    pass
+
+
+class C4(C1,  # S100
+    C2  # S101
+):
+    pass
