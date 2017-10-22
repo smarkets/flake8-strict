@@ -79,6 +79,8 @@ def _process_tree(tree):
         iterables.append(_process_atom(tree))
     elif nice_type == 'decorator':
         iterables.append(_process_decorator(tree))
+    elif nice_type == 'import_from':
+        iterables.append(_process_import_from(tree))
 
     iterables.extend(_process_tree(c) for c in tree.children)
 
@@ -178,6 +180,18 @@ def _process_decorator(decorator):
     # decorator: '@' dotted_name [ '(' [arglist] ')' ] NEWLINE
     decorator.children = decorator.children[2:5]
     return _process_trailer(decorator)
+
+
+def _process_import_from(import_from):
+    # The definition of import_from node:
+    # import_from: ('from' (('.' | '...')* dotted_name | ('.' | '...')+)
+    #              'import' ('*' | '(' import_as_names ')' | import_as_names))
+    last_element = import_from.children[-1]
+    last_element_type = pytree.type_repr(last_element.type)
+    if last_element_type == token.RPAR:
+        import_from.children = import_from.children[-3:]
+        return _process_parameters(import_from)
+    return []
 
 
 def _error(element, error_code):

@@ -81,7 +81,7 @@ Changes
 ''''''''''''''''''''''''
 
 * Fixed decorator arguments not being linted.
-
+* Fixed multiline imports not being linted.
 
 0.1.5
 '''''

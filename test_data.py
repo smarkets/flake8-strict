@@ -172,3 +172,14 @@ f5(
     4)  # S101
 def f7():
     pass
+
+
+from typing import (
+    Any,
+    Optional,
+)
+
+
+from typing import (Any,  # S100
+    Optional  # S101
+)
