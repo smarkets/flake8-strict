@@ -77,6 +77,11 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
+0.1.7 (not yet released)
+''''''''''''''''''''''''
+
+* Fixed trailing comma after *args/**kwargs for Python 3.6+ (issue #25)
+
 0.1.6
 '''''
 

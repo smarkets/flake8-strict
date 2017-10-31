@@ -108,7 +108,7 @@ def _process_parameters(parameters):
 
     # We only accept lack of trailing comma in case of the parameter
     # list containing any use of * or ** as adding the trailing comma
-    # is a syntax error.
+    # is a syntax error (in Python versions below 3.6).
     no_variadic_arguments = all(
         [
             element.type not in (token.STAR, token.DOUBLESTAR)
@@ -116,7 +116,10 @@ def _process_parameters(parameters):
         ]
     ) and not _is_unpacking_element(last_element)
 
-    if last_element.type != token.COMMA and no_variadic_arguments:
+    # We're allowed trailing commas here if we're on Python 3.6 +.
+    variadic_comma_allowed = no_variadic_arguments or sys.version_info >= (3, 6)
+
+    if last_element.type != token.COMMA and variadic_comma_allowed:
         yield _error(last_element, ErrorCode.S101)
 
 
