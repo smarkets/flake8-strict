@@ -23,20 +23,20 @@ def f3(
 
 def f4(
     a,
-    *args  # py3.6: S101
+    *args
 ):
     pass
 
 
 def f5(
     b,
-    **kwargs  # py3.6: S101
+    **kwargs
 ):
     pass
 
 def f6(
     *,
-    d  # py3.6: S101
+    d
 ):
     pass
 
@@ -157,12 +157,12 @@ f5(
 
 f4(
     3,
-    *[1, 2]  # py3.6: S101
+    *[1, 2]
 )
 
 f5(
     3,
-    **{  # py3.6: S101
+    **{
         'a': 3,
     }
 )

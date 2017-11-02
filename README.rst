@@ -77,6 +77,11 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
+0.1.8 (not yet released)
+''''''''''''''''''''''''
+
+* Revert previous change (0.1.7) due to a lib2to3 issue.
+
 0.1.7
 '''''
 
