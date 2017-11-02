@@ -24,7 +24,7 @@ from lib2to3.pgen2.driver import Driver
 from lib2to3.pgen2 import token
 from lib2to3.pygram import python_grammar_no_print_statement
 
-__version__ = '0.1.6'
+__version__ = '0.1.7'
 
 
 @enum.unique
