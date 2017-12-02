@@ -36,6 +36,7 @@ setup_arguments = dict(
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
+        'Framework :: Flake8',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
