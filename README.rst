@@ -77,6 +77,11 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
+0.1.9 (not yet released)
+''''''''''''''''''''''''
+
+* Fixed elements inside class definition not being linted correctly (issue #36)
+
 0.1.8
 '''''
 
