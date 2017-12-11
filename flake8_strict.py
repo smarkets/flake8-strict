@@ -181,7 +181,7 @@ def _process_atom(atom):
 def _process_decorator(decorator):
     # The definition of decorator node:
     # decorator: '@' dotted_name [ '(' [arglist] ')' ] NEWLINE
-    copied_decorator = copy.deepcopy(decorator)
+    copied_decorator = copy.copy(decorator)
     copied_decorator.children = decorator.children[2:5]
     return _process_trailer(copied_decorator)
 
@@ -193,7 +193,7 @@ def _process_import_from(import_from):
     last_element = import_from.children[-1]
     last_element_type = pytree.type_repr(last_element.type)
     if last_element_type == token.RPAR:
-        copied_import_from = copy.deepcopy(import_from)
+        copied_import_from = copy.copy(import_from)
         copied_import_from.children = import_from.children[-3:]
         return _process_parameters(copied_import_from)
     return []
@@ -202,7 +202,7 @@ def _process_import_from(import_from):
 def _process_classdef(classdef):
     # The definition of classdef node:
     # classdef: 'class' NAME ['(' [arglist] ')'] ':' suite
-    copied_classdef = copy.deepcopy(classdef)
+    copied_classdef = copy.copy(classdef)
     copied_classdef.children = classdef.children[2:5]
     return _process_trailer(copied_classdef)
 
