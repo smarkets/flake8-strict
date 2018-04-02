@@ -12,18 +12,19 @@ try:
 except ImportError:
     import pep8 as pycodestyle
 
-# A conscious decision has been made to use an (to the best of my knowledge)
-# undocumented and somewhat private lib2to3 package here.
-#
-# I trust the automated test suite to catch trivial issues if any backwards
-# incompatible changes are made to lib2to3 that affect us so we can fix them.
-#
-# Jakub
 
-from lib2to3 import pytree
-from lib2to3.pgen2.driver import Driver
-from lib2to3.pgen2 import token
-from lib2to3.pygram import python_grammar_no_print_statement
+# Use lib2to3 fork from black (https://github.com/ambv/black.git)
+try:
+    from blib2to3 import pytree
+    from blib2to3.pgen2.driver import Driver
+    from blib2to3.pgen2 import token
+    from blib2to3.pygram import python_grammar_no_print_statement
+except ImportError:
+    from lib2to3 import pytree
+    from lib2to3.pgen2.driver import Driver
+    from lib2to3.pgen2 import token
+    from lib2to3.pygram import python_grammar_no_print_statement
+
 
 __version__ = '0.1.9'
 
@@ -171,9 +172,9 @@ def _process_atom(atom):
 
     # Enforcing trailing commas in list/dict/set comprehensions seems too strict
     # so we won't do it for now even if it is syntactically allowed.
-    has_comprehension_inside = 'comp_for' in {
+    has_comprehension_inside = not {'comp_for', 'old_comp_for'}.isdisjoint({
         pytree.type_repr(node.type) for node in maker.children
-    }
+    })
     if last_maker_element.type != token.COMMA and not has_comprehension_inside:
         yield _error(last_maker_element, ErrorCode.S101)
 
