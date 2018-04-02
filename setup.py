@@ -48,6 +48,7 @@ setup_arguments = dict(
     ],
     py_modules=['flake8_strict'],
     install_requires=[
+        'black; python_version>="3.6"',
         'enum-compat',
         'flake8',
         'setuptools',
