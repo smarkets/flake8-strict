@@ -26,7 +26,7 @@ except ImportError:
     from lib2to3.pygram import python_grammar_no_print_statement
 
 
-__version__ = '0.1.9'
+__version__ = '0.2.0'
 
 
 @enum.unique

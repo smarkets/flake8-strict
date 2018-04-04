@@ -77,6 +77,13 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
+0.2.0
+'''''
+
+* Use custom lib2to3 for better support for Python 3.6+
+* Fix trailing comma after *args/**kwargs for Python 3.6+
+* Allow usage of Python 3.6 features (e.g f-strings) without crashing
+
 0.1.9
 '''''
 
