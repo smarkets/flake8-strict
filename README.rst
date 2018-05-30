@@ -77,6 +77,11 @@ Above 1.0.0, given a version number MAJOR.MINOR.PATCH:
 Changes
 -------
 
+0.2.1
+'''''
+
+* Fix blib2to3 import
+
 0.2.0
 '''''
 
