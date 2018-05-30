@@ -15,6 +15,7 @@ except ImportError:
 
 # Use lib2to3 fork from black (https://github.com/ambv/black.git)
 try:
+    import black  # noqa: F401
     from blib2to3 import pytree
     from blib2to3.pgen2.driver import Driver
     from blib2to3.pgen2 import token
